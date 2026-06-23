@@ -1,0 +1,7 @@
+pages\AmazonHomePage.class
+pages\LoginPage.class
+pages\StoreHomePage.class
+steps\StoreSteps.class
+pages\StoreActionPages.class
+pages\AmazonActionPages.class
+runner\TestRunner.class
