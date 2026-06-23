@@ -1,6 +1,12 @@
 pipeline {
     agent any
     
+    // Explicitly define JAVA_HOME so Jenkins doesn't guess
+    environment {
+        JAVA_HOME = 'C:\\Program Files\\Java\\jdk-26.0.1'
+        PATH = "${JAVA_HOME}\\bin;${env.PATH}"
+    }
+    
     stages {
         stage('Checkout') {
             steps {
@@ -12,18 +18,15 @@ pipeline {
         stage('Compile & Execute UI Tests') {
             steps {
                 echo 'Running Maven Test Lifecycle...'
-                // This will compile the code and run the Cucumber runners
                 bat 'mvn clean test'
             }
         }
     }
     
-    // The 'post' block ensures reports are processed whether the tests pass or fail
     post {
         always {
             echo 'Generating interactive Cucumber reports...'
-            // This command is unlocked by the Cucumber plugin you installed
-            cucumber 'target/*.json' 
+            cucumber 'target/cucumber-reports/*.json' 
         }
     }
 }
