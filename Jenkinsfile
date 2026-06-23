@@ -26,7 +26,7 @@ pipeline {
     post {
         always {
             echo 'Generating interactive Cucumber reports...'
-            cucumber 'target/cucumber-reports/*.json' 
+            cucumber 'target/cucumber.json' 
         }
     }
 }
